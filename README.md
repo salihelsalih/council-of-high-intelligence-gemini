@@ -22,6 +22,18 @@
 
 ---
 
+## Demo
+
+![Council Arayüzü — Demo](assets/demo.webp)
+
+### Ekran Görüntüleri
+
+| Arayüz | Üye Analizi | Konsey Kararı |
+|--------|------------|---------------|
+| ![Arayüz](assets/screenshot-interface.png) | ![Sonuçlar](assets/screenshot-results.png) | ![Karar](assets/screenshot-verdict.png) |
+
+---
+
 ## Hızlı Başlangıç
 
 ```bash
