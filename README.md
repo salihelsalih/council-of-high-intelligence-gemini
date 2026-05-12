@@ -1,310 +1,175 @@
-# Council of High Intelligence
+# Council of High Intelligence — Gemini Sürümü
 
 <p align="center">
   <img src="assets/header.jpeg" alt="Council of High Intelligence" width="800">
 </p>
 
 <p align="center">
-  18 AI personas deliberate your hardest decisions across multiple LLM providers. One command.
+  18 yapay zeka karakteri en zor kararlarınızı birden fazla Gemini modeliyle tartışır. Tek komut.
 </p>
 
 <p align="center">
-  <a href="https://github.com/0xNyk/council-of-high-intelligence/releases"><img src="https://img.shields.io/github/v/release/0xNyk/council-of-high-intelligence" alt="Release"></a>
-  <a href="https://github.com/0xNyk/council-of-high-intelligence/stargazers"><img src="https://img.shields.io/github/stars/0xNyk/council-of-high-intelligence" alt="Stars"></a>
-  <a href="https://creativecommons.org/publicdomain/zero/1.0/"><img src="https://img.shields.io/badge/license-CC0-blue" alt="License"></a>
-  <img src="https://img.shields.io/badge/Claude_Code-skill-blueviolet" alt="Claude Code Skill">
-  <img src="https://img.shields.io/badge/Codex-skill-black" alt="Codex Skill">
-  <img src="https://img.shields.io/badge/members-18-orange" alt="18 Members">
+  <a href="https://github.com/salihelsalih/council-of-high-intelligence-gemini/releases"><img src="https://img.shields.io/github/v/release/salihelsalih/council-of-high-intelligence-gemini" alt="Release"></a>
+  <a href="https://github.com/salihelsalih/council-of-high-intelligence-gemini/stargazers"><img src="https://img.shields.io/github/stars/salihelsalih/council-of-high-intelligence-gemini" alt="Stars"></a>
+  <img src="https://img.shields.io/badge/API-Google%20Gemini-blue" alt="Gemini API">
+  <img src="https://img.shields.io/badge/Üyeler-18-orange" alt="18 Üye">
+  <img src="https://img.shields.io/badge/Mod-Quick%20%7C%20Duo%20%7C%20Full-gold" alt="Modlar">
 </p>
-
-<details>
-<summary><strong>Table of Contents</strong></summary>
-
-- [Quickstart](#quickstart)
-- [Why This Works](#why-this-works)
-- [The 18 Council Members](#the-18-council-members)
-- [Three Deliberation Modes](#three-deliberation-modes)
-- [Multi-Provider Auto-Routing](#multi-provider-auto-routing)
-- [Deliberation Protocol](#deliberation-protocol)
-- [Installation](#installation)
-- [Requirements](#requirements)
-- [Contributing](#contributing)
-- [Support the Project](#support-the-project)
-
-</details>
-
-## Quickstart
-
-### Claude Code
-
-```bash
-git clone https://github.com/0xNyk/council-of-high-intelligence.git
-cd council-of-high-intelligence
-./install.sh
-```
-
-Then in Claude Code:
-
-```
-/council Should we open-source our agent framework?
-/council --quick Should we add caching here?
-/council --duo Should we use microservices or monolith?
-```
-
-### Codex
-
-```bash
-git clone https://github.com/0xNyk/council-of-high-intelligence.git
-cd council-of-high-intelligence
-./install.sh --codex
-```
-
-Then in Codex:
-
-```
-/council Should we open-source our agent framework?
-/council --quick Should we add caching here?
-/council --duo Should we use microservices or monolith?
-```
-
-## Why This Works
-
-A single LLM gives you one reasoning path dressed up as confidence. Ask it a hard question and you get a fluent, structured, wrong answer. The council gives you structured disagreement instead:
-
-- **Get genuinely different perspectives** — polarity pairs force real tension (Socrates destroys assumptions; Feynman rebuilds from first principles). Multi-provider routing spreads members across Claude, OpenAI, Gemini, and Ollama so you get actually different reasoning, not costume changes on one model
-- **Catch wrong questions early** — the Problem Restate Gate makes every member reframe the question before analysis begins. If 3 members restate your question differently, the question was the problem
-- **Know what the council can't answer** — verdicts lead with Unresolved Questions and Recommended Next Steps, not with confident-sounding consensus. What the council doesn't know matters more than where it agrees
-- **Prevent groupthink** — dissent quotas, novelty gates, and counterfactual prompts enforce genuine disagreement. If >70% agree too early, two members are forced to steelman the opposing view
-
-> **Why not just ask Claude directly?** A single prompt gives you one model's confident best guess. The council gives you 3-18 independent analyses from different intellectual traditions, forces them to challenge each other's claims, and synthesizes a verdict that surfaces disagreement rather than hiding it. It's the difference between asking one advisor and convening a board.
-
-## The 18 Council Members
-
-| Agent | Figure | Domain | Default Model | Polarity |
-|-------|--------|--------|-------|----------|
-| `council-aristotle` | Aristotle | Categorization & structure | opus | Classifies everything |
-| `council-socrates` | Socrates | Assumption destruction | opus | Questions everything |
-| `council-sun-tzu` | Sun Tzu | Adversarial strategy | sonnet | Reads terrain & competition |
-| `council-ada` | Ada Lovelace | Formal systems & abstraction | sonnet | What can/can't be mechanized |
-| `council-aurelius` | Marcus Aurelius | Resilience & moral clarity | opus | Control vs acceptance |
-| `council-machiavelli` | Machiavelli | Power dynamics & realpolitik | sonnet | How actors actually behave |
-| `council-lao-tzu` | Lao Tzu | Non-action & emergence | opus | When less is more |
-| `council-feynman` | Feynman | First-principles debugging | sonnet | Refuses unexplained complexity |
-| `council-torvalds` | Linus Torvalds | Pragmatic engineering | sonnet | Ship it or shut up |
-| `council-musashi` | Miyamoto Musashi | Strategic timing | sonnet | The decisive strike |
-| `council-watts` | Alan Watts | Perspective & reframing | opus | Dissolves false problems |
-| `council-karpathy` | Andrej Karpathy | Neural network intuition | sonnet | How models actually learn and fail |
-| `council-sutskever` | Ilya Sutskever | Scaling frontier & AI safety | opus | When capability becomes risk |
-| `council-kahneman` | Daniel Kahneman | Cognitive bias & decision science | opus | Your own thinking is the first error |
-| `council-meadows` | Donella Meadows | Systems thinking & feedback loops | sonnet | Redesign the system, not the symptom |
-| `council-munger` | Charlie Munger | Multi-model reasoning & economics | sonnet | Invert — what guarantees failure? |
-| `council-taleb` | Nassim Taleb | Antifragility & tail risk | opus | Design for the tail, not the average |
-| `council-rams` | Dieter Rams | User-centered design | sonnet | Less, but better — the user decides |
-
-<details>
-<summary><strong>Polarity Pairs</strong> — members are chosen as deliberate counterweights</summary>
-
-- **Socrates vs Feynman** — Destroys top-down vs rebuilds bottom-up
-- **Aristotle vs Lao Tzu** — Classifies everything vs structure IS the problem
-- **Sun Tzu vs Aurelius** — Wins external games vs governs the internal one
-- **Ada vs Machiavelli** — Formal purity vs messy human incentives
-- **Torvalds vs Watts** — Ships concrete solutions vs questions whether the problem exists
-- **Musashi vs Torvalds** — Waits for the perfect moment vs ships it now
-- **Karpathy vs Sutskever** — Build it, observe it, iterate vs pause, research, ensure safety first
-- **Karpathy vs Ada** — Empirical ML intuition vs formal systems theory
-- **Kahneman vs Feynman** — Your cognition is the first error vs trust first-principles reasoning
-- **Meadows vs Torvalds** — Redesign the feedback loop vs fix the symptom and ship
-- **Munger vs Aristotle** — Multi-model lattice vs single taxonomic system
-- **Taleb vs Karpathy** — Hidden catastrophic tails vs smooth empirical scaling curves
-- **Rams vs Ada** — What the user needs vs what computation can do
-
-</details>
-
-## Three Deliberation Modes
-
-### Full Mode (default)
-3-round structured deliberation: independent analysis → cross-examination → final positions.
-
-```
-/council Should we open-source our agent framework?
-/council --triad strategy What's our competitive moat?
-/council --full What is the right pricing model?
-```
-
-### Quick Mode (`--quick`)
-2-round rapid analysis for simpler decisions. No cross-examination.
-
-```
-/council --quick Should we add caching here?
-/council --quick --triad shipping Should we release today?
-```
-
-### Duo Mode (`--duo`)
-2-member dialectic using polarity pairs. Great for exploring tensions.
-
-```
-/council --duo Should we use microservices or monolith?
-/council --duo --members torvalds,ada Is this abstraction worth it?
-```
-
-<details>
-<summary><strong>Pre-defined Triads</strong> — 20 domain-specific 3-member combinations</summary>
-
-| Domain | Triad | Rationale |
-|--------|-------|-----------|
-| `architecture` | Aristotle + Ada + Feynman | Classify + formalize + simplicity-test |
-| `strategy` | Sun Tzu + Machiavelli + Aurelius | Terrain + incentives + moral grounding |
-| `ethics` | Aurelius + Socrates + Lao Tzu | Duty + questioning + natural order |
-| `debugging` | Feynman + Socrates + Ada | Bottom-up + assumption testing + formal verification |
-| `innovation` | Ada + Lao Tzu + Aristotle | Abstraction + emergence + classification |
-| `conflict` | Socrates + Machiavelli + Aurelius | Expose + predict + ground |
-| `complexity` | Lao Tzu + Aristotle + Ada | Emergence + categories + formalism |
-| `risk` | Sun Tzu + Aurelius + Feynman | Threats + resilience + empirical verification |
-| `shipping` | Torvalds + Musashi + Feynman | Pragmatism + timing + first-principles |
-| `product` | Torvalds + Machiavelli + Watts | Ship it + incentives + reframing |
-| `founder` | Musashi + Sun Tzu + Torvalds | Timing + terrain + engineering reality |
-| `ai` | Karpathy + Sutskever + Ada | Empirical ML + scaling frontier + formal limits |
-| `ai-product` | Karpathy + Torvalds + Machiavelli | ML capability + shipping pragmatism + incentives |
-| `ai-safety` | Sutskever + Aurelius + Socrates | Safety frontier + moral clarity + assumption destruction |
-| `decision` | Kahneman + Munger + Aurelius | Bias detection + inversion + moral clarity |
-| `systems` | Meadows + Lao Tzu + Aristotle | Feedback loops + emergence + categories |
-| `uncertainty` | Taleb + Sun Tzu + Sutskever | Tail risk + terrain + scaling frontier |
-| `design` | Rams + Torvalds + Watts | User clarity + maintainability + reframing |
-| `economics` | Munger + Machiavelli + Sun Tzu | Models + incentives + competition |
-| `bias` | Kahneman + Socrates + Watts | Cognitive bias + assumption destruction + frame audit |
-
-</details>
-
-<details>
-<summary><strong>Council Profiles</strong> — pre-built panels for different needs</summary>
-
-### `classic` (default)
-All 18 members with domain triads above. Best for broad deliberation.
-
-### `exploration-orthogonal`
-12-member panel for discovery and "unknown unknowns" reduction:
-- Socrates, Feynman, Sun Tzu, Machiavelli, Ada, Lao Tzu, Aurelius, Torvalds, Karpathy, Sutskever, Kahneman, Meadows
-- Profile triads: `unknowns`, `market-entry`, `system-design`, `reframing`, `ai-frontier`, `blind-spots`
-
-### `execution-lean`
-5-member panel for fast decision-to-action:
-- Torvalds, Feynman, Sun Tzu, Aurelius, Ada
-- Profile triads: `ship-now`, `launch-strategy`, `stability`
-
-</details>
-
-## Multi-Provider Auto-Routing
-
-The council automatically detects installed LLM providers and distributes members across them for genuine model diversity — zero config required.
-
-```
-/council --triad decision Should we accept this acquisition offer?
-```
-
-**Supported providers** (auto-detected):
-| Provider | CLI | Exec Method |
-|----------|-----|-------------|
-| Anthropic (Claude) | native | subagent (always available) |
-| OpenAI | `codex` | `codex exec` |
-| Google | `gemini` | `gemini -p` |
-| Ollama (local) | `ollama` | `ollama run` |
-
-**How routing works:**
-1. Polarity pairs are separated across providers (hard constraint)
-2. Members spread evenly across available providers
-3. Per-member `provider_affinity` in frontmatter used as tiebreaker
-4. If any provider fails, automatic fallback to Claude
-
-**Flags:**
-- `--no-auto-route` — disable auto-routing, use Claude-only defaults
-- `--dry-route` — print the routing table without running the council
-- `--models [path]` — manual override with YAML config (see `configs/provider-model-slots.example.yaml`)
-
-## Deliberation Protocol
-
-Full mode runs 7 steps: provider routing → problem restate gate → independent analysis → cross-examination → enforcement scan → final positions → verdict synthesis. Verdicts lead with what the council doesn't know.
-
-<details>
-<summary><strong>Full protocol details</strong></summary>
-
-### Full Mode (7 steps)
-1. **Provider Detection & Routing** — auto-detect providers, assign members
-2. **Problem Restate Gate** — each member restates the problem + provides an alternative framing before analysis begins
-3. **Round 1: Independent Analysis (blind-first)** — all members analyze in parallel (400 words max)
-4. **Round 2: Cross-Examination** — members challenge each other (300 words, must engage 2+ others)
-5. **Post-Round Enforcement** — dissent quota, novelty gate, agreement check, anti-recursion (single pass)
-6. **Round 3: Final Crystallization** — 100-word position statements
-7. **Verdict Synthesis** — leads with Unresolved Questions and Recommended Next Steps
-
-### Quick Mode
-1. **Problem Restate + Rapid Analysis** — reframe + analyze in parallel (200 words max)
-2. **Final Positions** — 75-word crystallization
-
-### Duo Mode
-1. **Problem Restate + Opening Positions** — reframe + state positions (300 words)
-2. **Direct Response** — engage opponent's claims (200 words)
-3. **Final Statements** — 50-word positions
-
-### Enforcement Mechanisms
-- Anti-recursion prevents Socrates from infinite questioning
-- Dissent quota + novelty gate + counterfactual pass prevent premature convergence
-- Tie-breaking uses 2/3 majority with domain expert weighting
-- All verdicts include a Follow-Up section for outcome tracking
-
-</details>
-
-## Installation
-
-Installs 18 council agents plus skill files for Claude and/or Codex.
-
-```bash
-./install.sh                                   # Claude install (default)
-./install.sh --codex                           # Claude + Codex skill install
-./install.sh --codex-only                      # Codex-only install
-./install.sh --claude-dir /path/to/.claude     # Non-default Claude config directory
-./install.sh --codex-dir /path/to/.codex       # Non-default Codex config directory
-./install.sh --dry-run                          # Preview without writing
-./install.sh --copy-configs                     # Also install model routing templates
-```
-
-Restart your target client(s) after installing. Run `./scripts/council-simulation-checklist.sh` to validate. Try the [demo session pack](demos/session-pack.md) to test all modes.
-
-## Requirements
-
-- [Claude Code](https://claude.ai/claude-code) CLI (required for Claude usage)
-- [Codex](https://github.com/openai/codex) (required for Codex skill usage)
-- Agent/subagent support in your client (enabled by default)
-
-**Optional providers** (auto-detected for multi-provider routing):
-- [Codex CLI](https://github.com/openai/codex) (OpenAI) — `npm i -g @openai/codex`
-- [Gemini CLI](https://github.com/google-gemini/gemini-cli) (Google) — see [gemini-cli repo](https://github.com/google-gemini/gemini-cli)
-- [Ollama](https://ollama.com) (local models) — install from ollama.com
-
-## Contributing
-
-Contributions welcome. Read the [contribution guidelines](CONTRIBUTING.md) first.
-
-## Support the Project
-
-If you find this project useful, consider supporting my open-source work.
-
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange?logo=buymeacoffee)](https://buymeacoffee.com/nyk_builderz)
-
-**Solana donations**
-
-`BYLu8XD8hGDUtdRBWpGWu5HKoiPrWqCxYFSh4oxXuvPg`
-
-## License
-
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, the authors have waived all copyright and
-related or neighboring rights to this work.
 
 ---
 
-<p align="center">
-  <a href="https://star-history.com/#0xNyk/council-of-high-intelligence&Date">
-    <img src="https://api.star-history.com/svg?repos=0xNyk/council-of-high-intelligence&type=Date" alt="Star History" width="400">
-  </a>
-</p>
+> **Orijinal proje:** [0xNyk/council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence) — Bu repo, orijinal projenin Google Gemini API'ye tam geçişini ve web arayüzü entegrasyonunu içeren fork'udur. Orijinal çalışmanın tüm hakkı [0xNyk](https://github.com/0xNyk)'ye aittir.
+
+---
+
+## Hızlı Başlangıç
+
+```bash
+git clone https://github.com/salihelsalih/council-of-high-intelligence-gemini.git
+cd council-of-high-intelligence-gemini
+npm install
+```
+
+`.env` dosyası oluştur:
+
+```env
+GEMINI_API_KEY=buraya_api_anahtarını_yaz
+```
+
+Sunucuyu başlat:
+
+```bash
+npm start
+```
+
+Tarayıcıda aç: **http://localhost:3131**
+
+---
+
+## Bu Fork'ta Yapılan Değişiklikler
+
+### 1. Anthropic → Google Gemini API Geçişi
+Orijinal proje Claude Code skill olarak çalışıyordu. Bu fork, tüm AI çağrılarını **Google Gemini API**'ye taşıdı. Hiçbir Anthropic/Claude bağımlılığı kalmadı.
+
+### 2. 12 Modelli Otomatik Yedekleme Sistemi
+Quota, rate limit veya 404 hatası alındığında sistem otomatik olarak sıradaki modele geçer. 30 dakikalık cooldown sonrası devre dışı kalan modeller yeniden denenir.
+
+### 3. Web Arayüzü (Tarayıcı Tabanlı)
+Claude Code CLI yerine doğrudan tarayıcıdan kullanılabilen tam özellikli bir arayüz geliştirildi:
+- Gerçek zamanlı SSE (Server-Sent Events) ile anlık sonuç akışı
+- Renk kodlu tur rozetleri (Mavi → Kırmızı → Yeşil → Altın)
+- Markdown render desteği
+
+### 4. Full Mod Implementasyonu (7 Adım)
+Orijinal projede `// not yet` yorumuyla kapalı olan Full mod tamamen implement edildi:
+
+| Adım | İşlem |
+|------|-------|
+| 1 | Provider yönlendirme |
+| 2 | **Problem Restate Gate** — her üye soruyu kendi çerçevesinden yeniden tanımlar |
+| 3 | **Round 1** — Bağımsız derin analiz (200 kelime) |
+| 4 | **Round 2** — Çapraz sorgu — en az 2 üyeye meydan okuma (150 kelime) |
+| 5 | **Enforcement Scan** — Groupthink ve erken uzlaşma kontrolü |
+| 6 | **Round 3** — Final kristalizasyon (60 kelime) |
+| 7 | **Karar Sentezi** — Cevapsız sorular önce gelir |
+
+### 5. Düşünce Sızıntısı Düzeltmesi
+`gemini-2.5-flash` gibi thinking modelleri iç muhakemelerini yanıta dahil ediyordu. İki katmanlı çözüm uygulandı:
+- `thinkingBudget: 0` ile thinking devre dışı (destekleyen modellerde)
+- `candidates[0].content.parts` manuel filtresi ile `thought: true` kısımlar yanıttan çıkarıldı
+
+### 6. Türkçe Dil Zorunluluğu
+Tüm prompt'lara zorunlu dil kuralı eklendi. Soru Türkçeyse yanıt, verdict dahil, tamamen Türkçe üretilir.
+
+### 7. Hata Yönetimi İyileştirmeleri
+- 500 Internal Server Error → geçici atlama (quota hatası gibi muamele)
+- 400 Bad Request (thinkingConfig desteklenmiyor) → model bazlı kontrol
+- 404 Not Found → kalıcı olarak o modeli devre dışı bırakma
+
+---
+
+## Desteklenen Google Gemini Modelleri
+
+Sistem aşağıdaki modeller arasında öncelik sırasına göre otomatik geçiş yapar:
+
+| Sıra | Model | Açıklama |
+|------|-------|----------|
+| 1 | `gemini-2.5-flash` | **Birincil model** — en yüksek kalite, thinking desteği |
+| 2 | `gemini-3-flash-preview` | Gemini 3 Flash önizleme |
+| 3 | `gemini-flash-latest` | En güncel Flash alias |
+| 4 | `gemini-flash-lite-latest` | Lite alias |
+| 5 | `gemini-2.5-flash-lite` | 2.5 Lite sürümü |
+| 6 | `gemini-2.0-flash` | Kararlı 2.0 Flash |
+| 7 | `gemini-2.0-flash-lite` | 2.0 Lite |
+| 8 | `gemma-4-31b-it` | Gemma 4 31B açık model |
+| 9 | `gemma-4-26b-a4b-it` | Gemma 4 26B MoE |
+| 10 | `gemini-3.1-flash-lite` | 3.1 Flash Lite |
+| 11 | `gemini-3.1-flash-lite-preview` | 3.1 Flash Lite önizleme |
+| 12 | `gemini-3-pro-preview` | Son çare — Pro (yavaş) |
+
+---
+
+## Konsey Üyeleri (18 Karakter)
+
+| Üye | Karakter | Alan |
+|-----|----------|------|
+| `council-aristotle` | Aristoteles | Sınıflandırma ve yapı |
+| `council-socrates` | Sokrates | Varsayımları yıkma |
+| `council-sun-tzu` | Sun Tzu | Çatışma stratejisi |
+| `council-ada` | Ada Lovelace | Formal sistemler |
+| `council-aurelius` | Marcus Aurelius | Dayanıklılık ve ahlaki netlik |
+| `council-machiavelli` | Machiavelli | Güç dinamikleri |
+| `council-lao-tzu` | Lao Tzu | Eylem-dışılık ve oluşum |
+| `council-feynman` | Feynman | Birinci prensiplerden başlama |
+| `council-torvalds` | Linus Torvalds | Pragmatik mühendislik |
+| `council-musashi` | Miyamoto Musashi | Stratejik zamanlama |
+| `council-watts` | Alan Watts | Perspektif ve yeniden çerçeveleme |
+| `council-karpathy` | Andrej Karpathy | Ampirik ML |
+| `council-sutskever` | Ilya Sutskever | AI güvenliği ve ölçekleme |
+| `council-kahneman` | Daniel Kahneman | Bilişsel önyargı |
+| `council-meadows` | Donella Meadows | Sistem düşüncesi |
+| `council-munger` | Charlie Munger | Çoklu model muhakemesi |
+| `council-taleb` | Nassim Taleb | Antikırılganlık ve kuyruk riski |
+| `council-rams` | Dieter Rams | Kullanıcı merkezli tasarım |
+
+---
+
+## Deliberasyon Modları
+
+### ⚡ Quick Mod (2 Tur)
+Hızlı kararlar için. Bağımsız analiz → Final pozisyonlar → Karar.
+
+### ⚔️ Duo Mod (2 Üye)
+İki zıt karakterin diyalektiği. Gerilimi keşfetmek için idealdir.
+
+### 🏛️ Full Mod (7 Adım)
+En derin analiz. Problem Restate Gate → 3 tur deliberasyon → Enforcement kontrolü → Karar sentezi.
+
+---
+
+## Gereksinimler
+
+- **Node.js** v18+
+- **Google Gemini API Anahtarı** → [aistudio.google.com](https://aistudio.google.com)
+
+```bash
+npm install        # Bağımlılıkları kur
+npm start          # Sunucuyu başlat (port 3131)
+```
+
+---
+
+## Lisans
+
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+Orijinal proje CC0 lisansıyla yayınlanmıştır. Bu fork da aynı lisansı taşımaktadır.
+
+---
+
+## Teşekkür
+
+Bu projenin temeli [0xNyk](https://github.com/0xNyk) tarafından oluşturulmuştur.  
+Orijinal repo: **[council-of-high-intelligence](https://github.com/0xNyk/council-of-high-intelligence)**
+
+Bu fork; Google Gemini API entegrasyonu, web arayüzü, Full Mod implementasyonu ve Türkçe dil desteği eklemektedir.

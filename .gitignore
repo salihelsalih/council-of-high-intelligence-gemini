@@ -1,0 +1,13 @@
+# API anahtarları
+.env
+
+# Bağımlılıklar
+node_modules/
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+
+# Log dosyaları
+*.log
+npm-debug.log*

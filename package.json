@@ -1,0 +1,25 @@
+{
+  "name": "council-of-high-intelligence-gemini",
+  "version": "1.0.0",
+  "description": "18 yapay zeka karakteri en zor kararlarınızı tartışır — Google Gemini API fork'u",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salihelsalih/council-of-high-intelligence-gemini.git"
+  },
+  "keywords": ["gemini", "ai", "council", "deliberation", "multi-agent", "google-ai"],
+  "author": "salihelsalih",
+  "license": "CC0-1.0",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/salihelsalih/council-of-high-intelligence-gemini/issues"
+  },
+  "homepage": "https://github.com/salihelsalih/council-of-high-intelligence-gemini#readme",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0"
+  }
+}

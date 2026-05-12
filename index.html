@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Council of High Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #8a6f33;
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --bg4: #1c1c28;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --text-dim: #888899;
+    --accent-blue: #4a9eff;
+    --accent-purple: #9b59b6;
+    --accent-green: #2ecc71;
+    --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(74,158,255,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.4));
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  /* Input Section */
+  .input-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.4);
+  }
+
+  .input-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .question-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 16px 18px;
+    resize: vertical;
+    min-height: 100px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    line-height: 1.6;
+  }
+
+  .question-input::placeholder { color: var(--text-dim); }
+  .question-input:focus {
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  /* Mode selector */
+  .mode-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .mode-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .mode-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .mode-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .mode-btn.active {
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .submit-btn {
+    margin-left: auto;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    border: none;
+    border-radius: 10px;
+    color: #0a0a0f;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 10px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .submit-btn:hover { 
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+  }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* Status bar */
+  .status-bar {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 24px;
+    font-size: 0.88rem;
+    color: var(--gold-light);
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .status-bar.visible { display: flex; }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--gold-dim);
+    border-top-color: var(--gold-light);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Results */
+  .results { display: flex; flex-direction: column; gap: 20px; }
+
+  /* Member card */
+  .member-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+    transition: border-color 0.2s;
+  }
+
+  .member-card:hover { border-color: rgba(201,168,76,0.3); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .member-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+  }
+
+  .member-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+  }
+
+  .member-info { flex: 1; min-width: 0; }
+  .member-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+  .member-domain {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  .round-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .round-1 { background: rgba(74,158,255,0.15); color: var(--accent-blue); border: 1px solid rgba(74,158,255,0.3); }
+  .round-2 { background: rgba(155,89,182,0.15); color: var(--accent-purple); border: 1px solid rgba(155,89,182,0.3); }
+  .round-restate { background: rgba(243,156,18,0.12); color: var(--accent-orange); border: 1px solid rgba(243,156,18,0.3); }
+  .round-r1      { background: rgba(74,158,255,0.15); color: var(--accent-blue); border: 1px solid rgba(74,158,255,0.3); }
+  .round-cross   { background: rgba(231,76,60,0.13); color: #ff7675; border: 1px solid rgba(231,76,60,0.3); }
+  .round-crystal { background: rgba(46,204,113,0.13); color: var(--accent-green); border: 1px solid rgba(46,204,113,0.3); }
+
+  /* Enforcement box */
+  .enforcement-box {
+    background: rgba(243,156,18,0.07);
+    border: 1px solid rgba(243,156,18,0.3);
+    border-radius: 12px;
+    padding: 18px 22px;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--text);
+    animation: fadeIn 0.4s ease;
+  }
+  .enforcement-box h4 { color: var(--accent-orange); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 8px; }
+
+  .member-body {
+    padding: 20px;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  /* Markdown-like rendering */
+  .member-body h3 { color: var(--gold-light); font-size: 0.88rem; font-weight: 600; margin: 16px 0 6px; letter-spacing: 0.02em; text-transform: uppercase; font-size: 0.78rem; }
+  .member-body p { margin-bottom: 10px; }
+  .member-body strong { color: var(--gold-light); font-weight: 600; }
+  .member-body em { color: var(--text-dim); font-style: italic; }
+
+  /* Verdict card */
+  .verdict-card {
+    background: linear-gradient(135deg, var(--bg2), var(--bg3));
+    border: 1px solid var(--gold-dim);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+    box-shadow: 0 4px 40px rgba(201,168,76,0.1);
+  }
+
+  .verdict-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.05));
+    border-bottom: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .verdict-header span:first-child { font-size: 24px; }
+
+  .verdict-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+
+  .verdict-body {
+    padding: 24px;
+    font-size: 0.93rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .verdict-body h2 { color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 1.1rem; margin: 20px 0 10px; }
+  .verdict-body h3 { color: var(--gold); font-size: 0.88rem; font-weight: 600; margin: 16px 0 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .verdict-body p { margin-bottom: 10px; }
+  .verdict-body strong { color: var(--gold-light); font-weight: 600; }
+  .verdict-body ul { margin: 8px 0 10px 20px; }
+  .verdict-body li { margin-bottom: 4px; }
+
+  /* Divider */
+  .round-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .round-divider::before, .round-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Members grid for quick reference */
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .member-chip {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .member-chip.active {
+    border-color: var(--gold-dim);
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .member-chip .chip-emoji { font-size: 16px; display: block; margin-bottom: 2px; }
+
+  /* Error */
+  .error-box {
+    background: rgba(231,76,60,0.1);
+    border: 1px solid rgba(231,76,60,0.3);
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.8rem; }
+    .mode-row { gap: 8px; }
+    .submit-btn { width: 100%; margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="header-icon">🏛️</span>
+    <h1>Council of High Intelligence</h1>
+    <p>18 AI personas deliberate your hardest decisions</p>
+  </div>
+
+  <div class="input-section">
+    <label class="input-label">Your Question</label>
+    <textarea 
+      class="question-input" 
+      id="question"
+      placeholder="Herhangi bir soruyu yazın... Türkçe veya İngilizce.&#10;Örnek: Bu devirde AI mı öğrenmek yoksa siber güvenlik mi daha iyi?"
+    ></textarea>
+
+    <div class="mode-row">
+      <span class="mode-label">Mode:</span>
+      <button class="mode-btn active" data-mode="quick" onclick="setMode('quick')">⚡ Quick</button>
+      <button class="mode-btn" data-mode="duo" onclick="setMode('duo')">⚔️ Duo</button>
+      <button class="mode-btn" data-mode="full" onclick="setMode('full')">🏛️ Full</button>
+      <button class="submit-btn" id="submitBtn" onclick="convene()">Convene Council</button>
+    </div>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <div class="spinner" id="spinner"></div>
+    <span id="statusText">Convening...</span>
+  </div>
+
+  <div class="results" id="results"></div>
+
+</div>
+
+<script>
+let currentMode = 'quick';
+
+const MEMBER_EMOJIS = {
+  aristotle: '📚', socrates: '❓', 'sun-tzu': '⚔️', ada: '💻',
+  aurelius: '🛡️', machiavelli: '🎭', 'lao-tzu': '☯️', feynman: '🔬',
+  torvalds: '🐧', musashi: '🗡️', watts: '🌊', karpathy: '🤖',
+  sutskever: '🧠', kahneman: '🧩', meadows: '🌿', munger: '💡',
+  taleb: '🎲', rams: '✏️'
+};
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === mode);
+  });
+}
+
+function renderMarkdown(text) {
+  return text
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(?!<[hul])(.+)$/gm, '<p>$1</p>')
+    .replace(/<p><\/p>/g, '')
+    .replace(/<p>(<[hul])/g, '$1')
+    .replace(/(<\/[hul][^>]*>)<\/p>/g, '$1');
+}
+
+function addMemberCard(data, round) {
+  const results = document.getElementById('results');
+  const card = document.createElement('div');
+  card.className = 'member-card';
+  card.id = `member-${data.id}-${round}`;
+  
+  const emoji = MEMBER_EMOJIS[data.id] || '👤';
+  const content = round === 1 ? data.analysis : data.position;
+  const badgeClass = round === 1 ? 'round-1' : 'round-2';
+  const badgeText = round === 1 ? 'Round 1' : 'Final Position';
+  
+  card.innerHTML = `
+    <div class="member-header">
+      <div class="member-avatar">${emoji}</div>
+      <div class="member-info">
+        <div class="member-name">${data.name}</div>
+        <div class="member-domain">${data.domain || ''}</div>
+      </div>
+      <span class="round-badge ${badgeClass}">${badgeText}</span>
+    </div>
+    <div class="member-body">${renderMarkdown(content)}</div>
+  `;
+  results.appendChild(card);
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function addVerdict(text) {
+  const results = document.getElementById('results');
+  
+  const divider = document.createElement('div');
+  divider.className = 'round-divider';
+  divider.textContent = 'Council Verdict';
+  results.appendChild(divider);
+
+  const card = document.createElement('div');
+  card.className = 'verdict-card';
+  card.innerHTML = `
+    <div class="verdict-header">
+      <span>⚖️</span>
+      <span class="verdict-title">Council Verdict</span>
+    </div>
+    <div class="verdict-body">${renderMarkdown(text)}</div>
+  `;
+  results.appendChild(card);
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Full Mode helpers ──
+function addDivider(label) {
+  const results = document.getElementById('results');
+  const d = document.createElement('div');
+  d.className = 'round-divider';
+  d.textContent = label;
+  results.appendChild(d);
+}
+
+function addFullCard(data, content, badgeClass, badgeText) {
+  const results = document.getElementById('results');
+  const card = document.createElement('div');
+  card.className = 'member-card';
+  const emoji = MEMBER_EMOJIS[data.id] || '👤';
+  card.innerHTML = `
+    <div class="member-header">
+      <div class="member-avatar">${emoji}</div>
+      <div class="member-info">
+        <div class="member-name">${data.name}</div>
+        <div class="member-domain">${data.domain || ''}</div>
+      </div>
+      <span class="round-badge ${badgeClass}">${badgeText}</span>
+    </div>
+    <div class="member-body">${renderMarkdown(content)}</div>
+  `;
+  results.appendChild(card);
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function convene() {
+  const question = document.getElementById('question').value.trim();
+  if (!question) return;
+
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('statusBar').classList.add('visible');
+  
+  let round1Done = false;
+
+  try {
+    const res = await fetch('/council', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, mode: currentMode }),
+    });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    const processEvent = (eventType, dataStr) => {
+      try {
+        const data = JSON.parse(dataStr);
+        if (eventType === 'status') {
+          document.getElementById('statusText').textContent = data.message;
+
+        // ── Quick / Duo events (unchanged) ──
+        } else if (eventType === 'member') {
+          addMemberCard(data, 1);
+        } else if (eventType === 'final') {
+          if (!round1Done) {
+            round1Done = true;
+            const divider = document.createElement('div');
+            divider.className = 'round-divider';
+            divider.textContent = 'Final Positions';
+            document.getElementById('results').appendChild(divider);
+          }
+          addMemberCard(data, 2);
+
+        // ── Full Mode events ──
+        } else if (eventType === 'restate') {
+          if (!window._fd) window._fd = {};
+          if (!window._fd.restate) { window._fd.restate = true; addDivider('🔄 Problem Restate Gate'); }
+          addFullCard(data, data.text, 'round-restate', 'Reframe');
+
+        } else if (eventType === 'r1') {
+          if (!window._fd.r1) { window._fd.r1 = true; addDivider('📜 Round 1 — Deep Analysis'); }
+          addFullCard(data, data.analysis, 'round-r1', 'Round 1');
+
+        } else if (eventType === 'crossexam') {
+          if (!window._fd.cross) { window._fd.cross = true; addDivider('⚔️ Round 2 — Cross-Examination'); }
+          addFullCard(data, data.text, 'round-cross', 'Cross-Exam');
+
+        } else if (eventType === 'enforcement') {
+          addDivider('🔍 Enforcement Scan');
+          const box = document.createElement('div');
+          box.className = 'enforcement-box';
+          box.innerHTML = '<h4>🔍 Groupthink & Dissent Check</h4>' + renderMarkdown(data.text);
+          document.getElementById('results').appendChild(box);
+          box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        } else if (eventType === 'crystallize') {
+          if (!window._fd.crystal) { window._fd.crystal = true; addDivider('💎 Round 3 — Final Crystallization'); }
+          addFullCard(data, data.position, 'round-crystal', 'Crystallized');
+
+        } else if (eventType === 'verdict') {
+          addVerdict(data.text);
+        } else if (eventType === 'error') {
+          const err = document.createElement('div');
+          err.className = 'error-box';
+          err.textContent = '⚠️ ' + data.message;
+          document.getElementById('results').appendChild(err);
+        } else if (eventType === 'done') {
+          window._fd = {};
+          document.getElementById('statusBar').classList.remove('visible');
+        }
+      } catch(e) { console.error('Parse error:', e, dataStr); }
+    };
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+
+      // Split on double newline (SSE message boundary)
+      const messages = buffer.split('\n\n');
+      buffer = messages.pop(); // keep incomplete last chunk
+
+      for (const msg of messages) {
+        const lines = msg.split('\n');
+        let eventType = 'message', dataStr = '';
+        for (const line of lines) {
+          if (line.startsWith('event: ')) eventType = line.slice(7).trim();
+          else if (line.startsWith('data: ')) dataStr = line.slice(6).trim();
+        }
+        if (dataStr) processEvent(eventType, dataStr);
+      }
+    }
+  } catch(e) {
+    const err = document.createElement('div');
+    err.className = 'error-box';
+    err.textContent = '⚠️ Sunucuya bağlanılamadı. Lütfen server.js çalıştığından emin olun.';
+    document.getElementById('results').appendChild(err);
+    document.getElementById('statusBar').classList.remove('visible');
+  }
+
+  document.getElementById('submitBtn').disabled = false;
+}
+
+// Enter to submit (Ctrl+Enter)
+document.getElementById('question').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) convene();
+});
+</script>
+</body>
+</html>
